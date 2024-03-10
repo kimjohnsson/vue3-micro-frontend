@@ -3,11 +3,21 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "platform",
+    "application1"
+  ],
   "scripts": {
     "create:app": "yarn create vite --template vue-ts",
+    "dev:host": "pnpm --filter \"./platform\" dev",
+    "build": "pnpm --parallel --filter \"./**\" build ",
+    "serve": "pnpm --parallel --filter \"./**\" preview ",
+    "build:remotes": "pnpm --parallel --filter \"./application1\" build",
+    "serve:remotes": "pnpm --filter \"./application1\"  preview",
     "lint": "eslint \"**/*.{js,ts,vue}\" --quiet --fix"
   },
   "devDependencies": {
+    "@originjs/vite-plugin-federation": "workspace:*",
     "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
